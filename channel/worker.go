@@ -1,15 +1,15 @@
 package main
 
 import (
-	"sync"
 	"fmt"
-	"time"
 	"math/rand"
+	"sync"
+	"time"
 )
 
 const (
-	numberWorker = 4 // 消费者数量,即goroutine数量
-	taskLoad = 10 // 待处理数量
+	numberWorker = 4  // 消费者数量,即goroutine数量
+	taskLoad     = 10 // 待处理数量
 )
 
 var wg sync.WaitGroup
@@ -18,7 +18,7 @@ func init() {
 	rand.Seed(time.Now().Unix())
 }
 
-func main()  {
+func main() {
 
 	tasks := make(chan string, taskLoad)
 
@@ -35,12 +35,12 @@ func main()  {
 	wg.Wait()
 }
 
-func worker(tasks chan string, worker int)  {
+func worker(tasks chan string, worker int) {
 
 	defer wg.Done()
 	for {
 		// 获取任务
-		task, ok := <- tasks
+		task, ok := <-tasks
 		if !ok {
 			fmt.Printf("%d 工作人员已经结束工作\n", worker)
 			return
@@ -54,4 +54,3 @@ func worker(tasks chan string, worker int)  {
 		fmt.Printf("%d 号工作人员已经完成了 %s 工作\n", worker, task)
 	}
 }
-

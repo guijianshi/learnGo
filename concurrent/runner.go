@@ -1,15 +1,15 @@
 package main
 
 import (
-	"time"
-	"log"
 	"learnGo/runner"
+	"log"
 	"os"
+	"time"
 )
 
 const timeout = 3 * time.Second
 
-func main()  {
+func main() {
 	log.Println("Starting work.")
 	r := runner.New(timeout)
 	r.Add(createTask(), createTask(), createTask())

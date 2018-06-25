@@ -1,14 +1,14 @@
 package main
 
 import (
-	"sync"
 	"fmt"
+	"sync"
 	"time"
 )
 
 var wg sync.WaitGroup
 
-func main()  {
+func main() {
 	baton := make(chan int)
 
 	wg.Add(1)
@@ -19,17 +19,17 @@ func main()  {
 	wg.Wait()
 }
 
-func Runner(baton chan int)  {
+func Runner(baton chan int) {
 	var newRunner int
 	// 从管道中取值
-	runner := <- baton
+	runner := <-baton
 
 	fmt.Printf("运动员 %d 号开始赛跑\n", runner)
 
 	if runner != 4 {
-		 newRunner = runner + 1
-		 fmt.Printf("运动员 %d 在跑道上准备接力\n", newRunner)
-		 go Runner(baton) // 创建goruntine(可是会在管道取值那阻塞,等待管道当中添加值baton <- newRunner)
+		newRunner = runner + 1
+		fmt.Printf("运动员 %d 在跑道上准备接力\n", newRunner)
+		go Runner(baton) // 创建goruntine(可是会在管道取值那阻塞,等待管道当中添加值baton <- newRunner)
 	}
 
 	time.Sleep(100 * time.Millisecond)

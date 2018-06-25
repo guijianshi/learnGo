@@ -1,20 +1,20 @@
 package main
 
 import (
-	"sync"
-	"math/rand"
-	"time"
 	"fmt"
+	"math/rand"
+	"sync"
+	"time"
 )
 
 // 用来等待程序结束
 var wg sync.WaitGroup
 
-func init()  {
+func init() {
 	rand.Seed(time.Now().UnixNano())
 }
 
-func main()  {
+func main() {
 	// 创建一个无缓存管道
 	court := make(chan int)
 
@@ -32,7 +32,7 @@ func main()  {
 	wg.Wait()
 }
 
-func player(name string, court chan int)  {
+func player(name string, court chan int) {
 	// 在函数退出时通知mian函数工作已经完成
 	defer wg.Done()
 	for {
