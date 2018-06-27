@@ -1,5 +1,7 @@
 package DictionaryCode
 
+import "fmt"
+
 //节点
 type Node struct {
 	value    string
@@ -28,8 +30,7 @@ func (t *Trie) Root() *Node {
 //添加节点
 func (t *Trie) Add(lCode []string, name string) *Node {
 	node := t.root
-	for i := range lCode {
-		r := lCode[i]
+	for _, r := range lCode {
 		if n, ok := node.children[r]; ok {
 			node = n
 		} else {

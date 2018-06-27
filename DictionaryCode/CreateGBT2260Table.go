@@ -9,7 +9,7 @@ import (
 )
 
 func CreateGBT2260Table() {
-	file, err := os.Open("./data/GBT2260-201804.csv")
+	file, err := os.Open("./DictionaryCode/GBT2260-201804.csv")
 	if err != nil {
 		fmt.Println("Error:", err)
 	}
@@ -27,6 +27,6 @@ func CreateGBT2260Table() {
 		name := record[1]
 		line = line + "{\"" + code + "\",\"" + name + "\"},"
 	}
-	content := "package gbt2260;func GetGbt2260Table() [][]string {gbt2260Table := [][]string{" + line + "};return gbt2260Table;}"
-	ioutil.WriteFile("gbt2260Table.go", []byte(content), 0666)
+	content := "package DictionaryCode;func GetGbt2260Table() [][]string {gbt2260Table := [][]string{" + line + "};return gbt2260Table;}"
+	ioutil.WriteFile("./DictionaryCode/gbt2260Table.go", []byte(content), 0666)
 }

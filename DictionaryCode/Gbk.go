@@ -48,15 +48,16 @@ func (b *BGT2260) SearchGBT2260(code string) []string {
 	node := trie.Root()
 	for i := range lCode {
 		r := lCode[i]
-		fmt.Println(r)
 		if n, ok := node.children[r]; ok {
 			newCode = append(newCode, n.value)
-			fmt.Println(newCode)
-
 			node = n
 		} else {
 			fmt.Printf("对不起，您输入的地域码不在列表当中")
 		}
 	}
 	return newCode
+}
+
+func StringParse(str string) []string  {
+	return stringParse(str)
 }
