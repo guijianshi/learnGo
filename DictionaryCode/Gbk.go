@@ -58,6 +58,15 @@ func (b *BGT2260) SearchGBT2260(code string) []string {
 	return newCode
 }
 
+func (b *BGT2260) Test() {
+	node := trie.Root()
+	for _, i := range node.children {
+		for _, value := range i.children {
+			fmt.Println(value)
+		}
+	}
+}
+
 func StringParse(str string) []string  {
 	return stringParse(str)
 }

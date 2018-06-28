@@ -1,6 +1,5 @@
 package DictionaryCode
 
-import "fmt"
 
 //节点
 type Node struct {

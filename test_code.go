@@ -9,6 +9,7 @@ import (
 func main()  {
 	start_time := time.Now()
 	region := DictionaryCode.NewGBT2260()
+	region.Test()
 	localCode := region.SearchGBT2260("110101")
 	fmt.Println(localCode)
 	end_time := time.Now()
